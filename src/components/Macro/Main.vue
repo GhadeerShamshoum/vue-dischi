@@ -1,12 +1,20 @@
 <template>
-  <div class="container-fluid">
-    
-  </div>
+  <main class="container m-auto mt-5 mb-5">
+      <div class="row">
+          <div class="col">
+              <PlayList/>
+          </div>
+      </div>
+  </main>
 </template>
 
 <script>
+import PlayList from "../sections/PlayList.vue"
 export default {
   name: 'Main',
+  components: {
+      PlayList
+  },
   props: {
     
   }
@@ -15,9 +23,14 @@ export default {
 
 
 <style scoped lang="scss">
-.container-fluid{
-    background-color: #1E2D3B;
-    height: 900px;
+@import "../../assets/style/global.scss";
+.container{
+  width: 1200px;
+  margin: 20px 0;
+  
+  
+
 }
+
 
 </style>

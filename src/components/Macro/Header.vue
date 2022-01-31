@@ -26,7 +26,6 @@ export default {
 @import "../../assets/style/global.scss";
 .container-fluid{
   background-color: $background-color;
-  padding: 10px;
 }
 
 </style>
