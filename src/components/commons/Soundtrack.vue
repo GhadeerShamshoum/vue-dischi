@@ -31,8 +31,8 @@ export default {
 .soundtrack{
     background-color: $background-color ;
     .containerImg{
-      height: 206px;
-      width: 181px;
+      height: 173px;
+      width: 196px;
       overflow: hidden;
       img{
         height: 100%;

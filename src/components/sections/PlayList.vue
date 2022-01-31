@@ -40,6 +40,7 @@ export default {
                     // handle success
                     this.playlistArray = risponde.data.response;
                     this.loading = false;
+                    console.log( this.loading, this.playlistArray)
                 })
                 .catch(function (error) {
                     // handle error
