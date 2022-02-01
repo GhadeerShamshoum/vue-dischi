@@ -1,9 +1,11 @@
 <template>
   <section class="container">
       <div v-if="!loading" class="row">
+      <Options
+      @filter="filterGenre" />
           <div class="d-flex flex-wrap" >
-            <Soundtrack v-for="soundtrack in playlistArray "
-            :key="soundtrack"
+            <Soundtrack v-for="(soundtrack,index) in filteredGenres "
+            :key="index"
             :info="soundtrack"
             />
           </div>
@@ -14,6 +16,7 @@
 
 <script>
 import axios from "axios"
+import Options from '../sections/Options.vue';
 import Soundtrack from "../commons/Soundtrack.vue"
 import Loader from "../commons/Loader.vue";
 export default {
@@ -22,17 +25,39 @@ export default {
       return {
           apiURL: "https://flynn.boolean.careers/exercises/api/array/music",
           playlistArray: [],
-          loading: true
+          loading: true,
+          newInput:''
       }
   },
   components: {
       Soundtrack,
-      Loader
+      Loader,
+      Options
   },
   created(){
       this.getPlayList();
   },
+  computed: {
+        filteredGenres(){
+            if(this.newInput == ''){
+                return this.playlistArray
+            }
+            else{
+
+                return this.playlistArray.filter( (item) => {
+                    return item.genre.includes(this.newInput)
+                });
+
+            }
+        }
+    },
   methods: {
+      filterGenre(selected){
+          this.newInput = selected;
+          console.log(this.newInput)
+          
+      },
+
       getPlayList() {
           axios
                 .get(this.apiURL)
@@ -40,7 +65,7 @@ export default {
                     // handle success
                     this.playlistArray = risponde.data.response;
                     this.loading = false;
-                    console.log( this.loading, this.playlistArray)
+                    
                 })
                 .catch(function (error) {
                     // handle error

@@ -3,6 +3,7 @@
       <div class="row">
           <div class="col">
               <PlayList/>
+              
           </div>
       </div>
   </main>
@@ -10,10 +11,12 @@
 
 <script>
 import PlayList from "../sections/PlayList.vue"
+
 export default {
   name: 'Main',
   components: {
       PlayList
+      
   },
   props: {
     

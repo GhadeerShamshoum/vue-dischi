@@ -1,8 +1,9 @@
 <template>
   <header class="container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div  class="d-flex align-items-center col-12">
         <Logo />
+        
       </div>
     </div>
   </header>
