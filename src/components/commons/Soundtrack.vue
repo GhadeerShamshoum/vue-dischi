@@ -32,7 +32,7 @@ export default {
     background-color: $background-color ;
     .containerImg{
       height: 173px;
-      width: 196px;
+      width: 80%;
       overflow: hidden;
       img{
         height: 100%;

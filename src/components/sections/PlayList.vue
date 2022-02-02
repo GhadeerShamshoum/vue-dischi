@@ -3,8 +3,10 @@
       <div v-if="!loading" class="row">
       <Options
       @filter="filterGenre" />
+      <OptionsAuthor 
+      @filter="filterArtist"/>
           <div class="d-flex flex-wrap" >
-            <Soundtrack v-for="(soundtrack,index) in filteredGenres "
+            <Soundtrack v-for="(soundtrack,index) in filteredGenres"
             :key="index"
             :info="soundtrack"
             />
@@ -16,9 +18,10 @@
 
 <script>
 import axios from "axios"
-import Options from '../sections/Options.vue';
+import Options from '../sections/Options.vue'
 import Soundtrack from "../commons/Soundtrack.vue"
-import Loader from "../commons/Loader.vue";
+import Loader from "../commons/Loader.vue"
+import OptionsAuthor from '../sections/OptionsAuthor.vue';
 export default {
   name: 'PlayList',
   data() {
@@ -26,13 +29,15 @@ export default {
           apiURL: "https://flynn.boolean.careers/exercises/api/array/music",
           playlistArray: [],
           loading: true,
-          newInput:''
+          newInput:'',
+          
       }
   },
   components: {
       Soundtrack,
       Loader,
-      Options
+      Options,
+      OptionsAuthor
   },
   created(){
       this.getPlayList();
@@ -45,14 +50,22 @@ export default {
             else{
 
                 return this.playlistArray.filter( (item) => {
-                    return item.genre.includes(this.newInput)
+                    return item.genre.includes(this.newInput)||item.author.includes(this.newInput)
+                    
                 });
 
             }
-        }
+        },
+        
     },
   methods: {
       filterGenre(selected){
+          this.newInput = selected;
+          console.log(this.newInput)
+          
+      },
+
+      filterArtist(selected){
           this.newInput = selected;
           console.log(this.newInput)
           
@@ -72,8 +85,8 @@ export default {
                     console.log(error);
                 });
 
-      }
-  }
+           }
+    }
 
 }
 </script>
@@ -81,7 +94,8 @@ export default {
 
 <style scoped lang="scss">
 .card{
-    margin: 10px; 
+    margin: 10px;
+    min-width: 400px; 
     background-color: transparent;
     
 }
